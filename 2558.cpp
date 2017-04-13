@@ -1,0 +1,28 @@
+/*
+ * 2558.cpp
+ *
+ *  Created on: 2017. 4. 13.
+ *      Author: chokisang
+ */
+
+
+#include<iostream>
+
+using namespace std;
+
+int main(){
+
+	int A, B;
+	cin >> A>>B;
+
+	cout<<A+B<<endl;
+
+
+
+	return 0;
+}
+
+
+
+
+

@@ -1,0 +1,23 @@
+/*
+ * 2914.cpp
+ *
+ *  Created on: 2017. 7. 3.
+ *      Author: chokisang
+ */
+
+#include<iostream>
+
+using namespace std;
+
+int main(){
+
+	int A, I;
+
+	cin >> A >> I;
+
+	cout<< A * (I-1) + 1<<endl;
+
+	return 0;
+}
+
+

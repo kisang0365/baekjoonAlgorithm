@@ -1,62 +1,81 @@
-/*
- * 11724.cpp
- *
- *  Created on: 2017. 7. 11.
- *      Author: chokisang
- */
-
 #include<iostream>
-#include<vector>
-#include<queue>
+#include<string>
 #include<cstdio>
+
 using namespace std;
 
-int N, M;
-vector<int> v[1001];
-bool visit[1001]= {false,};
-int ans = 0;
-void BFS(int root){
+int MAX = 20;
+int Num = 1 << MAX;
 
-	queue<int> q;
-	visit[root] = false;
-	q.push(root);
+void add(){
 
-	while(!q.empty()){
+    int n;
+    cin >> n;
+    if( (Num & ( 1 << n) ) == 0) Num += (1<<n); 
+}
 
-		int n = q.front();
-		q.pop();
+void remove(){
+    
+    int n;
+    cin >> n;
 
-		for(int i=0; i<v[n].size(); i++){
-			int next = v[n][i];
-			if(visit[next] == false){
-				q.push(next);
-				visit[next] = true;
-			}
-		}
-	}
-	ans++;
+    if(Num & ( 1 << n) ) Num -= (1<< n );
+}
+
+void check(){
+    int n;
+    cin >> n;
+
+    if(Num & ( 1 << n) ) printf("1\n");
+    else printf("0\n");
+}
+
+void toggle(){
+    int n;
+    cin >> n;
+
+    if(Num & ( 1 << n) ) Num -= (1<<n);
+    else Num += (1<<n);  
+}
+
+void all(){
+    
+    Num = (Num | ( (1 << MAX) - 1)   );
+}
+void empty(){
+    Num = Num & (1 << MAX);
 }
 
 int main(){
+    
+    std::ios_base::sync_with_stdio(false);
+    
+    int M;
+    cin >> M;
 
+    for(int i=0; i<M; i++){
 
-	cin >> N >> M;
-	int s, e;
-	for(int i=0; i<M; i++){
-		scanf("%d %d", &s, &e);
-		v[s].push_back(e);
-		v[e].push_back(s);
-	}
+        string str;
+        cin >> str;
+        if(str == "add"){
+            add();
+        }
+        else if(str == "remove"){
+            remove();
+        }
+        else if(str == "check"){
+            check();
+        }
+        else if(str == "toggle"){
+            toggle();
+        }
+        else if(str == "all"){
+            all();
+        }
+        else{
+            empty();
+        }
+    }
 
-	for(int i=1; i<=N; i++){
-
-		if(!visit[i]){
-			BFS(i);
-		}
-
-	}
-	cout<<ans<<endl;
-	return 0;
+    return 0;
 }
-
-
